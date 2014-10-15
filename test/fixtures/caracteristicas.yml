@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  segmento_id: 
+  tipo: MyString
+  nombre: MyString
+
+two:
+  segmento_id: 
+  tipo: MyString
+  nombre: MyString

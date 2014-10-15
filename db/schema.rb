@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141014235631) do
+ActiveRecord::Schema.define(version: 20141015231107) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -46,7 +46,39 @@ ActiveRecord::Schema.define(version: 20141014235631) do
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
 
+  create_table "agencia", force: true do |t|
+    t.string   "nombre"
+    t.integer  "dpto_mendoza_id"
+    t.string   "direccion"
+    t.integer  "telefono"
+    t.string   "email"
+    t.string   "web"
+    t.float    "latitud"
+    t.float    "longitud"
+    t.boolean  "alta"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "agencia", ["dpto_mendoza_id"], name: "index_agencia_on_dpto_mendoza_id"
+
+  create_table "caracteristicas", force: true do |t|
+    t.integer  "segmento_id"
+    t.string   "tipo"
+    t.string   "nombre"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "caracteristicas", ["segmento_id"], name: "index_caracteristicas_on_segmento_id"
+
   create_table "dpto_mendozas", force: true do |t|
+    t.string   "nombre"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "segmentos", force: true do |t|
     t.string   "nombre"
     t.datetime "created_at"
     t.datetime "updated_at"

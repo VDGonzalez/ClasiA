@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nombre: MyString
+  dpto_mendoza_id: 
+  direccion: MyString
+  telefono: 1
+  email: MyString
+  web: MyString
+  latitud: 1.5
+  longitud: 1.5
+  alta: false
+
+two:
+  nombre: MyString
+  dpto_mendoza_id: 
+  direccion: MyString
+  telefono: 1
+  email: MyString
+  web: MyString
+  latitud: 1.5
+  longitud: 1.5
+  alta: false
