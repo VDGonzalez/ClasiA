@@ -7,6 +7,7 @@ class Usuario < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable
 
+  # Expresiones regulares:
   NOMBRE_Y_APELLIDO_REGEX = /\A[a-zA-zñáéíóú]+[a-zA-z\sñáéíóú]*\z/
   TELEFONO_REGEX = /\A(([1-9][0-9]{9})|([1-9][0-9]{11})|(0[0-9]{10})|(0[0-9]{12})|([1-9][0-9]{2}[*][0-9]{4}))\z/
 
