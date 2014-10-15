@@ -1,0 +1,35 @@
+@import "colors";
+
+.navbar{
+	margin-bottom: 0px;
+	border-bottom-color: $naranja;
+	border-bottom-width: 2px;
+}
+
+.navbar-default{
+
+	.navbar-nav > li > a {
+		padding-left: 30px;
+		padding-right: 30px;
+	}
+
+	.dropdown-menu > li > a {
+		color: $grisOscuro;
+
+		&:hover, &:focus { 
+			color: $blanco;
+			background-color: $naranja;
+		}
+	}
+	
+	.navbar-form {
+		
+		.form-control{	
+			background-color: #eee;
+			&:focus {
+			    border-color: $naranja;
+			    box-shadow:  0px 0px 3px $naranja;
+			}
+		} 
+	}
+}

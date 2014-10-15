@@ -1,0 +1,29 @@
+.margin-container {
+	margin-top: 30px;
+	margin-bottom: 30px;
+	padding-bottom: 30px;
+}
+
+.error {
+	color: $state-danger-text;
+	font-weight: bold;
+}
+
+.header-form {
+	background-color: $naranja;
+	color: $blanco;
+	margin-bottom: 15px;
+}
+
+.sub-header {
+	background-color: $grisOscuro;
+	color: $blanco;
+	margin-bottom: 10px;
+}
+
+@media (max-width: 768px) {
+	.margin-container {
+		margin: 15px;
+		padding-bottom: 15px;
+	}
+}

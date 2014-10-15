@@ -1,0 +1,55 @@
+@import "colors";
+
+/* Extra Small devices (mobiles, 320px and up) */
+@media (max-width: 767px) {
+	.product {
+		padding: 10px;
+		background-color: $blanco;
+		border: 1px solid $grisOscuro;
+		border-radius: 4px;
+		img{
+			max-height: 180px;
+			max-width: 200px;
+			margin-bottom: 5px;
+		}
+		h4 {
+			font-size: 14px;
+			font-weight: bold;
+		}
+		.glyphicon{
+			display: none;
+		}
+		.precio{
+			color: $naranja;
+			font-size: 12px;
+			font-weight: bold;
+			border: 0.5px solid $grisOscuro;
+			border-radius: 4px;
+			padding: 3px;
+		}
+		.table > thead > tr > th, .table > thead > tr > td, .table > tbody > tr > th, .table > tbody > tr > td, .table > tfoot > tr > th, .table > tfoot > tr > td {
+			border: 0;
+			font-size: 11px;
+		}
+	}
+}
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+	.product {
+		background-color: $blanco;
+		border: 1px solid $grisOscuro;
+		border-radius: 4px;
+		padding: 15px;
+		img{
+			max-height: 180px;
+		}
+		.precio{
+			color: $naranja;
+			font-size: 18px;
+			font-weight: bold;
+			padding-left: 5px;
+		}
+	}
+
+}

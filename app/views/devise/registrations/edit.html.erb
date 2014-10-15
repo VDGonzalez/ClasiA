@@ -1,0 +1,88 @@
+<div class="container margin-container bg-white">
+  <div class="row header-form">
+    <div class="col-xs-12 text-center">
+      <h2 class="h-padding">Editar <%= resource_name.to_s.humanize %></h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-offset-1 col-xs-10 col-md-offset-3 col-md-6">
+      <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+        <!-- ALERTA -->
+          <%= devise_error_messages! %>
+
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-md-offset-2 col-md-8 text-center">  
+        <h4>Datos del usuario</h4>
+        
+    </div>
+    <div class="col-xs-offset-1 col-xs-10 col-md-offset-3 col-md-6">  
+        <div class="form-group">
+          <label>Nombre:</label>
+          <%= f.input :nombre, required: true, autofocus: true, label: false,  input_html: { class: 'form-control ' } %>
+        </div>
+        <div class="form-group">
+          <label>Apellido:</label>
+          <%= f.input :apellido, required: true, label: false, input_html: { class: 'form-control' } %>
+        </div> 
+        <div class="form-group">
+          <label>Ubicación:</label>  
+          <%= f.association :dpto_mendoza, label_method: :nombre, value_method: :id, required: true, label: false, input_html: { class: 'form-control' } %>
+        </div>
+        <div class="form-group">
+          <label>Nueva contraseña:</label>  
+          <%= f.input :password, autocomplete: "off", hint: "déjalo en blanco si no lo quieres cambiar", required: false, label: false, as: :password, input_html: { class: 'form-control' } %>
+        </div>  
+        <div class="form-group">
+          <label>Repite tu nueva contraseña:</label>  
+          <%= f.input :password_confirmation, required: false, label: false, input_html: { class: 'form-control' } %>
+        </div>
+        <div class="form-group">
+          <label>Contraseña actual:</label>  
+          <%= f.input :current_password, hint: "necesitamos tu contraseña actual para confirmar tus cambios", required: true, label: false, input_html: { class: 'form-control' } %>
+        </div>
+      </div>
+      <div class="col-xs-12 col-md-offset-2 col-md-8 text-center">  
+        <h4>Datos de contacto</h4>
+      </div>
+      <div class="col-xs-offset-1 col-xs-10 col-md-offset-3 col-md-6">  
+        <div class="form-group">
+          <label>Email:</label>  
+          <%= f.input :email, required: true, label: false, as: :email, input_html: { class: 'form-control' } %>
+          <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+            <p>Actualmente esperando por confirmaci&oacute;n de: <%= resource.unconfirmed_email %></p>
+          <% end %>
+        </div>
+        <div class="form-group">
+          <label>Telefono:</label>  
+          <%= f.input :telefono, as: :tel, label: false, input_html: { class: 'form-control' } %>
+        </div>
+        <div class="form-group">
+          <label>Telefono alternativo:</label>  
+          <%= f.input :telefono2, label: false, input_html: { class: 'form-control' } %>
+        </div>
+
+        <div class="form-group">
+          <%= f.button :submit, "Actualizar", class: 'btn btn-success btn-lg' %>
+        </div>
+      </div>
+      <% end %>
+  </div>
+</div>
+
+<!-- CERRAR CUENTA -->
+<div class="container bg-white margin-container">
+  <div class="row sub-header text-center">
+    <div class="col-xs-12"> 
+        <h3>Cerrar mi cuenta</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-offset-1 col-xs-10 col-md-offset-3 col-md-6">  
+        <p>No estas satisfecho con el servicio? <%= link_to "Cerrar mi cuenta", registration_path(resource_name), data: { confirm: "Estás seguro?" }, method: :delete %></p>
+<!-- 
+        <%= link_to "Volver", :back %> -->
+    </div>
+  </div>
+</div>

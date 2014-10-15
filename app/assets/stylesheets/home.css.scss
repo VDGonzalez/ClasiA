@@ -1,0 +1,86 @@
+// Place all the styles related to the Home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+@import "colors";
+
+.main-header{
+	height: 500px;
+	padding-top: 80px;
+	background-image: url("/images/1.jpg");
+	background-size: cover;
+
+	.main-search {
+
+		.row {
+			padding-bottom: 20px;
+			h1{
+				color: $blanco;
+			}
+			.btn-group {
+				margin-top: -20px;
+				.btn{
+					font-family: sans-serif;
+					font-style: normal;
+					font-weight: normal;
+				}
+				.btn-lg{
+					height: 80px;
+				}
+			}
+			&:first-child {
+				//padding-bottom: 10px;
+				padding-top: 10px;
+			}
+
+			&:last-child {
+				padding-bottom: 30px;
+			}
+
+			.bg-style {
+				background-color: rgba(41, 41, 41, 0.7);
+				border-radius: 8px 8px 8px 8px;
+				box-shadow: 0 0 20px 0 ;
+			}
+			}
+	}		
+}
+
+section {
+	padding-bottom: 30px;
+
+	article {
+		.row {
+			padding-bottom: 15px;
+		}
+	}
+}
+
+.icon{
+	height: 25px;
+	margin-bottom: 5px;
+	margin-top: 5px;
+}
+
+@media (max-width: 767px) {
+	.main-header{
+		height: auto;
+		padding-top: 15px;
+		padding-bottom: 15px;
+		background: $grisOscuro;
+		h4 {
+			padding-left: 15px;
+			color: $gris;
+		}
+		.nav > li > a {
+			color: $naranja;
+			padding-left: 30px;
+			border-radius: 0;
+			font-size: 16px;
+
+			&:hover, &:active, &:focus{
+				color: $blanco;
+				background-color: $naranja;
+			}
+		}
+	}
+}
