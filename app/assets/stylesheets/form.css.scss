@@ -15,6 +15,31 @@
 	margin-bottom: 15px;
 }
 
+.banner-form {
+	background-color: $azul;
+	margin-bottom: 15px;
+	a {
+		text-decoration: none;
+		display: block;
+		&:hover, &:focus, &:active{
+			h1{
+				color: $azulUp;
+			}
+			p {
+				color: $azulUp;
+			}
+		}
+		h1 { 
+			color: $blanco;
+			font-size: 40px;
+		}
+		p {
+			font-size: 18px;
+			color: $gris;
+		}
+	}
+}
+
 .sub-header {
 	background-color: $grisOscuro;
 	color: $blanco;
@@ -26,4 +51,14 @@
 		margin: 15px;
 		padding-bottom: 15px;
 	}
+	.banner-form {
+	a {
+		h1 { 
+			font-size: 20px;
+		}
+		p {
+			font-size: 11px;
+		}
+	}
+}
 }

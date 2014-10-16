@@ -1,19 +1,49 @@
-<h2>Cambiar tu contrase&ntilde;a</h2>
+<div class="container margin-container bg-white">
 
-<%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
-  <%= f.error_notification %>
-
-  <%= f.input :reset_password_token, as: :hidden %>
-  <%= f.full_error :reset_password_token %>
-
-  <div class="form-inputs">
-    <%= f.input :password, label: "Nueva contraseña", required: true, autofocus: true %>
-    <%= f.input :password_confirmation, label: "Confirma tu nueva contraseña", required: true %>
+  <div class="row header-form">
+    <div class="col-xs-push-1 col-xs-10 text-center">
+      <h2 class="h-padding">Cambiar tu contrase&ntilde;a</h2>
+    </div>
   </div>
+  <div class="row">
+    <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Cambiar mi contraseña" %>
-  </div>
-<% end %>
 
-<%= render "devise/shared/links" %>
+    <div class="col-xs-offset-1 col-xs-10 col-md-offset-3 col-md-6">
+      <!-- ALERTA -->
+      <% if f.error_notification %>
+        <div class="alert alert-danger alert-dismissable">
+              <button type="button" class="close" data-dismiss="alert">&times;</button>
+          <%= f.error_notification %>
+        </div>
+      <% end %>
+      <%= f.input :reset_password_token, as: :hidden %>
+      <%= f.full_error :reset_password_token %>
+
+      <!-- INPUTS -->
+        <div class="form-group">
+            <label for="password">Nueva contraseña:</label>
+            <%= f.input :password, required: false, autofocus: true, label: false, input_html: { class: 'form-control ' } %>
+        </div>
+        <div class="form-group">
+            <label for="password_confirmation">Confirma tu nueva contraseña:</label>
+            <%= f.input :password_confirmation, required: false, autofocus: true, label: false, input_html: { class: 'form-control ' } %>
+        </div>
+
+      <!-- BOTONES -->
+      <div class="row">
+        <div class="col-xs-6">
+          <div class="form-group">
+                <%= f.button :submit, "Cambiar mi contraseña", class: 'btn btn-success' %>
+          </div>
+        </div>            
+<!--        <div class="col-xs-6">
+          <div class="form-group text-right">
+            <%= render "devise/shared/links" %> 
+          </div>   
+        </div>  
+      </div> -->
+    </div>
+    <% end %>       
+    </div>  
+</div>
