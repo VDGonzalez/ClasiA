@@ -197,11 +197,15 @@ es:
       short: ! '%d de %b a las %H:%M hrs'
     pm: pm
   attributes:
-    email: Correo Electrónico
+    email: Correo electrónico
+    email_confirmation: Confirmar correo electrónico
     password: Contraseña
     password_confirmation: Confirmar contraseña
     remember_me: Recordarme
     current_password: Contraseña actual
+    telefono: Teléfono
+    telefono2: Teléfono 2
+    ubicacion: Ubicación
   simple_form:
     error_notification:
       usuario: "Uno o más campos del formulario tienen error, por favor corrígelos:"
