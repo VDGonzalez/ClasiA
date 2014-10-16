@@ -204,8 +204,7 @@ es:
     remember_me: Recordarme
     current_password: Contraseña actual
     telefono: Teléfono
-    telefono2: Teléfono 2
-    ubicacion: Ubicación
+    telefono2: Teléfono adicional
   simple_form:
     error_notification:
       usuario: "Uno o más campos del formulario tienen error, por favor corrígelos:"
