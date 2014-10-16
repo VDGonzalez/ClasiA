@@ -55,8 +55,8 @@ gem 'bootstrap-will_paginate'
 #######
 
 ####### Formularios
-gem "paperclip", "~> 4.2"
-#gem "paperclip", "~> 3.5"
+#gem "paperclip", "~> 4.2"
+gem "paperclip", "~> 3.5"
 gem "cocoon"
 gem 'simple_form'
 #######
