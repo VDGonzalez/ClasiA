@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141016024833) do
+ActiveRecord::Schema.define(version: 20141018172733) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -82,13 +82,22 @@ ActiveRecord::Schema.define(version: 20141016024833) do
     t.datetime "updated_at"
   end
 
-  create_table "segmentos", force: true do |t|
+  create_table "marcas", force: true do |t|
     t.string   "nombre"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "tipo_caracts", force: true do |t|
+  create_table "modelos", force: true do |t|
+    t.integer  "marca_id"
+    t.string   "nombre"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "modelos", ["marca_id"], name: "index_modelos_on_marca_id"
+
+  create_table "segmentos", force: true do |t|
     t.string   "nombre"
     t.datetime "created_at"
     t.datetime "updated_at"

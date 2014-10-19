@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class TipoCaractTest < ActiveSupport::TestCase
+class MarcaTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
