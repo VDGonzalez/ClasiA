@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141018172733) do
+ActiveRecord::Schema.define(version: 20141019150617) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -127,5 +127,38 @@ ActiveRecord::Schema.define(version: 20141018172733) do
   add_index "usuarios", ["dpto_mendoza_id"], name: "index_usuarios_on_dpto_mendoza_id"
   add_index "usuarios", ["email"], name: "index_usuarios_on_email", unique: true
   add_index "usuarios", ["reset_password_token"], name: "index_usuarios_on_reset_password_token", unique: true
+
+  create_table "vehiculos", force: true do |t|
+    t.integer  "usuario_id"
+    t.integer  "agencia_id"
+    t.integer  "segmento_id"
+    t.integer  "dpto_mendoza_id"
+    t.integer  "marca_id"
+    t.integer  "modelo_id"
+    t.string   "modeloCustom"
+    t.string   "titulo"
+    t.integer  "anio"
+    t.integer  "kilometraje"
+    t.string   "combustible"
+    t.float    "precio"
+    t.string   "condicion"
+    t.text     "comentario"
+    t.boolean  "destacado"
+    t.boolean  "principal"
+    t.integer  "denunciado"
+    t.boolean  "alta"
+    t.text     "equipamiento"
+    t.text     "seguridad"
+    t.text     "exterior"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "vehiculos", ["agencia_id"], name: "index_vehiculos_on_agencia_id"
+  add_index "vehiculos", ["dpto_mendoza_id"], name: "index_vehiculos_on_dpto_mendoza_id"
+  add_index "vehiculos", ["marca_id"], name: "index_vehiculos_on_marca_id"
+  add_index "vehiculos", ["modelo_id"], name: "index_vehiculos_on_modelo_id"
+  add_index "vehiculos", ["segmento_id"], name: "index_vehiculos_on_segmento_id"
+  add_index "vehiculos", ["usuario_id"], name: "index_vehiculos_on_usuario_id"
 
 end

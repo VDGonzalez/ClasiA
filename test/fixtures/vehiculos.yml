@@ -1,0 +1,47 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  usuario_id: 
+  agencia_id: 
+  segmento_id: 
+  dpto_mendoza_id: 
+  marca_id: 
+  modelo_id: 
+  modeloCustom: MyString
+  titulo: MyString
+  anio: 1
+  kilometraje: 1
+  combustible: MyString
+  precio: 1.5
+  condicion: MyString
+  comentario: MyText
+  destacado: false
+  principal: false
+  denunciado: 1
+  alta: false
+  equipamiento: MyText
+  seguridad: MyText
+  exterior: MyText
+
+two:
+  usuario_id: 
+  agencia_id: 
+  segmento_id: 
+  dpto_mendoza_id: 
+  marca_id: 
+  modelo_id: 
+  modeloCustom: MyString
+  titulo: MyString
+  anio: 1
+  kilometraje: 1
+  combustible: MyString
+  precio: 1.5
+  condicion: MyString
+  comentario: MyText
+  destacado: false
+  principal: false
+  denunciado: 1
+  alta: false
+  equipamiento: MyText
+  seguridad: MyText
+  exterior: MyText

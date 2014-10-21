@@ -3,6 +3,7 @@
 class Usuario < ActiveRecord::Base
 
   belongs_to :dpto_mendoza
+  has_many :vehiculos, dependent: :destroy
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable

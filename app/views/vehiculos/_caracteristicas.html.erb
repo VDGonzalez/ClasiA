@@ -1,0 +1,95 @@
+<div class="row">
+  <div class="col-xs-12 col-md-4">
+    <!-- EQUIPAMIENTO -->
+    <h4>Equipamiento</h4>
+    <% if @vehiculo.id %>
+      <% @caracteristicas_equipamiento.each do |b| %>
+        <% if @split_equipamiento.include?(b.nombre) %>
+          <div class="checkbox">
+            <label>
+            <input type='checkbox' value='<%= b.nombre %>' class="array_equipamiento" checked><%= b.nombre %>
+            </label>
+          </div>
+        <% else %>
+        <div class="checkbox">
+            <label>
+            <input type='checkbox' value='<%= b.nombre %>' class="array_equipamiento" ><%= b.nombre %>
+          </label>
+        </div>
+        <% end %>
+      <% end %>
+    <% else %>
+      <% @caracteristicas_equipamiento.each do |b| %>
+        
+          <div class="checkbox">
+              <label>
+              <input type='checkbox' value='<%= b.nombre %>' class="array_equipamiento" ><%= b.nombre %>
+              </label>
+          </div>
+        
+      <% end %>
+    <% end %>
+  </div>
+  <div class="col-xs-12 col-md-4">
+    <!-- SEGURIDAD -->
+    <h4>Seguridad</h4>
+    <% if @vehiculo.id %>
+      <% @caracteristicas_seguridad.each do |b| %>
+        <% if @split_seguridad.include?(b.nombre) %>
+          <div class="checkbox">
+            <label>
+            <input type='checkbox' value='<%= b.nombre %>' class="array_seguridad" checked><%= b.nombre %>
+            </label>
+          </div>
+        <% else %>
+        <div class="checkbox">
+            <label>
+            <input type='checkbox' value='<%= b.nombre %>' class="array_seguridad" ><%= b.nombre %>
+          </label>
+        </div>
+        <% end %>
+      <% end %>
+    <% else %>
+      <% @caracteristicas_seguridad.each do |b| %>
+        
+          <div class="checkbox">
+              <label>
+              <input type='checkbox' value='<%= b.nombre %>' class="array_seguridad" ><%= b.nombre %>
+              </label>
+          </div>
+        
+      <% end %>
+    <% end %>
+  </div>
+  <div class="col-xs-12 col-md-4">
+    <!-- EXTERIOR -->
+    <h4>Exterior</h4>
+    <% if @vehiculo.id %>
+      <% @caracteristicas_exterior.each do |b| %>
+        <% if @split_exterior.include?(b.nombre) %>
+          <div class="checkbox">
+            <label>
+            <input type='checkbox' value='<%= b.nombre %>' class="array_exterior" checked><%= b.nombre %>
+            </label>
+          </div>
+        <% else %>
+        <div class="checkbox">
+            <label>
+            <input type='checkbox' value='<%= b.nombre %>' class="array_exterior" ><%= b.nombre %>
+          </label>
+        </div>
+        <% end %>
+      <% end %>
+    <% else %>
+      <% @caracteristicas_exterior.each do |b| %>
+        
+          <div class="checkbox">
+              <label>
+              <input type='checkbox' value='<%= b.nombre %>' class="array_exterior" ><%= b.nombre %>
+              </label>
+          </div>
+        
+      <% end %>
+    <% end %>
+  </div>
+</div>
