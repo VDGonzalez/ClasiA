@@ -69,3 +69,7 @@ gem 'slim'
 gem 'activeadmin', github: 'activeadmin'
 gem 'devise'
 ######
+
+######## Mapas
+gem 'gmaps4rails'
+########

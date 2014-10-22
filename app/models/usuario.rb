@@ -4,6 +4,8 @@ class Usuario < ActiveRecord::Base
 
   belongs_to :dpto_mendoza
 
+  # Configuración de gema devise: -----------------------------------------------------------------
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable
 

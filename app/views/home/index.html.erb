@@ -113,6 +113,21 @@
 	</div>
 </section>
 
+<!-- MAPA -->
+
+<style>
+	/* Sobre-escribir atributos css para que no aparescan las barras de desplazamiento laterales */
+	.gm-style-iw {
+		/*line-height:1.35 !important;*/
+		overflow: hidden !important;
+		/*white-space:nowrap !important;*/
+		width: auto !important;
+	}
+</style>
+
+<!-- <section id="map" style='height: 400px; line-height:1.35; overflow:hidden; white-space:nowrap;'></section> -->
+<section id="map" style='height: 400px;'></section>
+
 <!-- AGENCIAS -->
 
 <section class="bg-white">
@@ -152,7 +167,6 @@
 		</article>
 	</div>
 </section>
-
 
 <!-- CARRUSEL AGENCIAS -->
 
@@ -197,5 +211,24 @@
 		</div>
 	</div>
 </section>
+
+<script type="text/javascript">
+  handler = Gmaps.build('Google');
+  handler.buildMap({
+      provider: {
+        disableDefaultUI: true
+        // pass in other Google Maps API options here
+      },
+      internal: {
+        id: 'map'
+      }
+    },
+    function(){
+      markers = handler.addMarkers(<%=raw @hash.to_json %>);
+      handler.bounds.extendWith(markers);
+      handler.fitMapToBounds();
+    }
+  );
+</script>
 
 <%= javascript_include_tag 'home', 'data-turbolinks-track' => true %>
