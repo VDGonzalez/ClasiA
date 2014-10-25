@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141019150617) do
+ActiveRecord::Schema.define(version: 20141021230311) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -81,6 +81,19 @@ ActiveRecord::Schema.define(version: 20141019150617) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "fotos", force: true do |t|
+    t.integer  "vehiculo_id"
+    t.string   "descripciom"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "imagen_file_name"
+    t.string   "imagen_content_type"
+    t.integer  "imagen_file_size"
+    t.datetime "imagen_updated_at"
+  end
+
+  add_index "fotos", ["vehiculo_id"], name: "index_fotos_on_vehiculo_id"
 
   create_table "marcas", force: true do |t|
     t.string   "nombre"
@@ -152,6 +165,10 @@ ActiveRecord::Schema.define(version: 20141019150617) do
     t.text     "exterior"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "foto_ppal_file_name"
+    t.string   "foto_ppal_content_type"
+    t.integer  "foto_ppal_file_size"
+    t.datetime "foto_ppal_updated_at"
   end
 
   add_index "vehiculos", ["agencia_id"], name: "index_vehiculos_on_agencia_id"

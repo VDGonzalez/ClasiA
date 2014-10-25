@@ -15,6 +15,8 @@
 })(jQuery);  
 
 $(document).ready(function(){
+	// Estilo input file con bootsjs
+    $(":file").filestyle({buttonName: "btn-primary", buttonText: "Seleccionar", icon: false });
 	// Inicializar titulo_prev
 		var marca = $('#vehiculo_marca_id :selected').html(); 
 		var modeloc = $('#vehiculo_modeloCustom').val();
@@ -76,7 +78,7 @@ $(document).ready(function(){
 			$('#continuar_paso2').show();
 			$('#volver_paso2').hide();
 			$('#publicar').hide();
-			$('#titulo_paso').html('Datos del Vehículo');
+			$('#titulo_paso').html('Características del Vehículo');
 
 		});
 
@@ -85,7 +87,6 @@ $(document).ready(function(){
 			$('#vehiculo_equipamiento').val(array_equipamiento);
 			$('#vehiculo_seguridad').val(array_seguridad);
 			$('#vehiculo_exterior').val(array_exterior);
-			//$('#vehiculo_alta').val(1); // setear alta para submit
 			$('#paso2').hide();
 			$('#paso3').fadeIn();
 			$('#continuar_paso2').hide();
@@ -93,6 +94,11 @@ $(document).ready(function(){
 			$('#volver_paso2').show();
 			$('#publicar').show();
 			$('#titulo_paso').html('Fotos del Vehículo');
+		});
+
+		// Submit ultimo paso
+		$('#publicar').click(function (){
+			$('#vehiculo_alta').val(1); // setear alta para submit
 		});
 
 
@@ -105,7 +111,7 @@ $(document).ready(function(){
 			var marca = $('#vehiculo_marca_id :selected').html(); 
 			var modeloc = $('#vehiculo_modeloCustom').val();
 			var anio = $('#vehiculo_anio').val();
-			var titulo = marca + modeloc + anio;
+			var titulo = marca + ' ' + ' ' + modeloc + ' ' + anio;
 			$('#titulo_prev').val(titulo);
 		});
 		$('#vehiculo_modeloCustom').change(function (){
@@ -152,10 +158,8 @@ $(document).ready(function(){
 			var input_val = $(this).val();
 			var exist = $.inArray(input_val, array_equipamiento);
 			if ( exist == -1) {
-				alert('no existe');
 				array_equipamiento.push(input_val);
 			}else{
-				alert('existe');
 				array_equipamiento = jQuery.grep(array_equipamiento, function(value) {
 				  return value != input_val;
 				});
@@ -167,10 +171,8 @@ $(document).ready(function(){
 			var input_val = $(this).val();
 			var exist = $.inArray(input_val, array_seguridad);
 			if ( exist == -1) {
-				alert('no existe');
 				array_seguridad.push(input_val);
 			}else{
-				alert('existe');
 				array_seguridad = jQuery.grep(array_seguridad, function(value) {
 				  return value != input_val;
 				});
@@ -182,13 +184,26 @@ $(document).ready(function(){
 			var input_val = $(this).val();
 			var exist = $.inArray(input_val, array_exterior);
 			if ( exist == -1) {
-				alert('no existe');
 				array_exterior.push(input_val);
 			}else{
-				alert('existe');
 				array_exterior = jQuery.grep(array_exterior, function(value) {
 				  return value != input_val;
 				});
 			}
+			$('#vehiculo_equipamiento').val(array_equipamiento);
 		});
+
+	// Fotos Anidadas
+		$( "#agregar" ).click(function() { //cantidad de campos de fotos
+			var cant = $( ".nested-fields" ).length;
+			if (cant > 2){
+				$( "#agregar" ).attr('disabled', true);
+			}
+		});
+
+		$( "#borrar" ).click(function() {
+				$(".nested-fields").last().remove();
+				$( "#agregar" ).attr('disabled', false);
+		});
+
 });

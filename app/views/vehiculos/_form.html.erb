@@ -57,10 +57,6 @@
           </div>
           </div>
           <div class="col-xs-12 col-md-6">
-           <!--  <div class="form-group">
-            <label>Modelo</label>
-            <%= f.association :modelo %>
-            </div> -->
             <div class="form-group">
               <label>Modelo</label>
               <%= f.input :modeloCustom %>
@@ -74,7 +70,7 @@
           </div>
           <div class="col-xs-12">
             <label>Vista previa: Título de la publicación</label>
-            <input type="text" id="titulo_prev" class="form-control" disabled >
+            <input type="text" id="titulo_prev" class="form-control", placeholder='Ej: [marca] Peugeot [modelo] 207 Compact 5P [año] 2014' disabled >
             <%= f.input :titulo, as: :hidden %>
           </div>
         </fieldset>
@@ -87,7 +83,7 @@
           <div class="col-xs-12 col-sm-6 col-md-6">
             <div class="form-group">
               <label>Precio</label>
-              <%= f.input :precio %>
+              <%= f.input :precio, input_html: { value: '0' } %>
             </div>
           </div>
           <div class="col-xs-12 col-sm-6 col-md-6">
@@ -99,7 +95,7 @@
           <div class="col-xs-12 col-sm-6 col-md-6">
             <div class="form-group">
               <label>Kilometraje</label>
-              <%= f.input :kilometraje %>
+              <%= f.input :kilometraje, input_html: { value: '0' } %>
             </div>
           </div>
           <div class="col-xs-12 col-sm-6 col-md-6">
@@ -115,35 +111,53 @@
       <div id="paso2">
   
         <%= render 'caracteristicas'  %>
-        <div class="form-group">
-          <label>Equipamiento</label>
-          <%= f.input :equipamiento %>
-        </div>
 
         <div class="form-group">
-          <label>Seguridad</label>
-          <%= f.input :seguridad %>
+          <%= f.input :equipamiento, as: :hidden %>
         </div>
         <div class="form-group">
-          <label>Exterior</label>
-          <%= f.input :exterior %>
+          <%= f.input :seguridad, as: :hidden %>
+        </div>
+        <div class="form-group">
+          <%= f.input :exterior, as: :hidden %>
         </div>
         <div class="form-group">
           <label>Comentario</label>
-          <%= f.input :comentario %>
+          <%= f.input :comentario, placeholder: 'Escribe un comentario si lo necesitas' %>
         </div>
 
       </div>
 
       <div id="paso3">
-        <p>nested</p>
-
+        <!-- FOTO PPAL -->
+        <fieldset class="">
+            <legend class="">Foto principal</legend>
+            <div class="form-group">
+              <%= f.input :foto_ppal, class: 'filestyle', id: 'foto_ppal' %>
+            </div>
+        </fieldset>
+        <!-- FOTOS / FORM ANIDADO -->
+        <fieldset class="">
+            <legend class="">Fotos secundarias</legend>
+            <div class="row">
+                <%= f.simple_fields_for :fotos do |foto| %>
+                  <%= render 'foto_fields', :f => foto %>
+                <% end %>
+            </div>
+            <div class="row">
+                 <div class="col-xs-12">
+                   <%= link_to_add_association 'Agregar foto', f, :fotos,  class: 'btn btn-primary', id: 'agregar' %>
+                   <%= link_to_remove_association "Eliminar foto", f, class: 'btn btn-primary', id: 'borrar' %>
+                 </div>      
+            </div>
+        </fieldset>
       </div>
-
+      <!-- INPUT ALTA / MANEJO DEL SUBMIT -->
       <div class="form-group">
           <%= f.input :alta, required: true, as: :hidden %>
       </div>
-
+      <!-- BOTONES -->
+      <hr>
       <div class="form-group">
           <button type='submit' id='continuar_paso1' class='btn btn-primary'>Continuar&nbsp;&nbsp;<span class="glyphicon glyphicon-arrow-right"></span></button>
           <a id='volver_paso1' class='btn btn-default'>Paso 1</a>
@@ -155,3 +169,6 @@
     <% end %>
   </div>
 </div>
+
+<%= javascript_include_tag 'vehiculos', 'data-turbolinks-track' => true %>
+<%= javascript_include_tag 'bootstrap-filestyle.min', 'data-turbolinks-track' => true %>

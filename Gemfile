@@ -47,6 +47,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin]
 gem 'bootstrap-sass'
 gem 'autoprefixer-rails'
 gem 'thin'
+gem "font-awesome-rails"
 ########
 
 ####### Paginacion

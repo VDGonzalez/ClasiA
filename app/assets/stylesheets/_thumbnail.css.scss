@@ -1,55 +1,106 @@
 @import "colors";
 
-/* Extra Small devices (mobiles, 320px and up) */
-@media (max-width: 767px) {
-	.product {
-		padding: 10px;
-		background-color: $blanco;
-		border: 1px solid $grisOscuro;
-		border-radius: 4px;
+.product {
+	&:hover{
+		border: 1px solid $naranja;
+	}
+	a {
+		text-decoration: none;
+		color: $grisOscuro;
+	}
+	background-color: $blanco;
+	border: 1px solid $grisOscuro;
+	border-radius: 4px;
+	padding-bottom: 15px;
+	hr {
+		padding: 0;
+		margin: 0;
+		padding-top: 5px;
+		padding-bottom: 5px;
+		border-color: $grisUp;
+	}
+	.image {
+		height: 200px;
+		background-color: $gris;
 		img{
-			max-height: 180px;
-			max-width: 200px;
-			margin-bottom: 5px;
+			max-height: 200px;
+			width: 100%;
 		}
+		.col-xs-12, .col-sm-12, .col-md-12 {
+			margin: 0;
+			padding: 0;
+		}
+	}
+	.usuario{
+		div:first-child {
+				margin: 0;
+				padding: 0;
+			}
+			.agencia {
+				background-color: $naranja;
+				color: $blanco;
+				font-size: 12px;
+				font-weight: bold;
+				p {
+					padding: 5px;
+				}
+			}
+	}
+	.precio{
+		color: $naranja;
+		font-size: 18px;
+		font-weight: bold;
+		.glyphicon {
+			color: $grisOscuro;
+			margin-right: 5px;
+		}
+	}
+	.caracteristicas {
+		font-size: 16px;
+		.glyphicon {
+			color: $naranja;
+			margin-left: 10px;
+			margin-right: 5px;
+		}
+		.glyphicon:first-child {
+			margin-left: 0px;
+			margin-right: 5px;
+		}
+	}
+}
+
+/* Extra Small devices (mobiles, 320px and up) */
+@media (max-width: 360px) {
+	.product {
 		h4 {
 			font-size: 14px;
 			font-weight: bold;
 		}
-		.glyphicon{
-			display: none;
+		.precio{
+			font-size: 14px;
+		}
+		.caracteristicas {
+			font-size: 12px;
+		}
+	}
+}
+
+@media (min-width: 360px) and (max-width: 768px) {
+	.product {
+		h4 {
+			font-size: 16px;
+			font-weight: bold;
 		}
 		.precio{
-			color: $naranja;
-			font-size: 12px;
-			font-weight: bold;
-			border: 0.5px solid $grisOscuro;
-			border-radius: 4px;
-			padding: 3px;
+			font-size: 16px;
 		}
-		.table > thead > tr > th, .table > thead > tr > td, .table > tbody > tr > th, .table > tbody > tr > td, .table > tfoot > tr > th, .table > tfoot > tr > td {
-			border: 0;
-			font-size: 11px;
+		.caracteristicas {
+			font-size: 16px;
 		}
 	}
 }
 
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {
-	.product {
-		background-color: $blanco;
-		border: 1px solid $grisOscuro;
-		border-radius: 4px;
-		padding: 15px;
-		img{
-			max-height: 180px;
-		}
-		.precio{
-			color: $naranja;
-			font-size: 18px;
-			font-weight: bold;
-			padding-left: 5px;
-		}
-	}
 
 }

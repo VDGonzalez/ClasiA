@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  vehiculo_id: 
+  descripciom: MyString
+
+two:
+  vehiculo_id: 
+  descripciom: MyString
