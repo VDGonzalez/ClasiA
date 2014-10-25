@@ -47,6 +47,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin]
 gem 'bootstrap-sass'
 gem 'autoprefixer-rails'
 gem 'thin'
+gem "font-awesome-rails"
 ########
 
 ####### Paginacion
@@ -55,8 +56,8 @@ gem 'bootstrap-will_paginate'
 #######
 
 ####### Formularios
-gem "paperclip", "~> 4.2"
-#gem "paperclip", "~> 3.5"
+#gem "paperclip", "~> 4.2"
+gem "paperclip", "~> 3.5"
 gem "cocoon"
 gem 'simple_form'
 #######

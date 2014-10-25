@@ -1,0 +1,174 @@
+<div class="container margin-container bg-white">
+
+  <div class="row header-form">
+    <div class="col-xs-push-1 col-xs-10 text-center">
+      <h2 class="h-padding">Publicar Vehículo</h2>
+    </div>
+  </div>
+  <div class="row">
+    <%= simple_form_for @vehiculo, :html => {multipart: true, id: 'form_new'}, defaults: { input_html: { class: 'form-control' }, label: false } do |f| %>
+
+    
+    <div class="col-xs-12 col-md-offset-2 col-md-8">
+      <legend id='titulo_paso'>Datos del Vehículo</legend>
+      <% if @vehiculo.errors.any? %>
+        <div class="alert alert-danger alert-dismissable">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          <h2><%= pluralize(@vehiculo.errors.count, "error") %> prohibited this vehiculo from being saved:</h2>
+
+          <ul>
+          <% @vehiculo.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="col-xs-offset-1 col-xs-10 col-md-offset-3 col-md-6">
+      <div id="paso1">
+
+        <!-- CAPTURA USUARIO Y COPIA CON JQUERY -->
+        <% if !@vehiculo.id %>
+          <div class="form-group">
+            <%= f.input :usuario_id, as: :hidden %>
+            <input class="numeric integer optional disabled form-control hidden" id="usuario_id" type="number" value="<%= current_usuario.id %>">
+          </div>
+        <% end %>
+
+        <!-- SEGMENTO ESCONDIDO / SETEADO URL JQUERY -->
+        <div class="form-group">
+          <%= f.association  :segmento, label_method: :nombre, value_method: :id, as: :hidden %>
+        </div>
+
+        <div class="form-group">
+          <label>Ubicacion</label>
+          <%= f.association  :dpto_mendoza, label_method: :nombre, value_method: :id %>
+        </div>
+
+        <!-- TITULO -->
+        <div class="row">
+          <fieldset class="">
+            <legend class="">Título</legend>
+          <div class="col-xs-12 col-md-3">
+            <div class="form-group">
+            <label>Marca</label>
+            <%= f.association  :marca, label_method: :nombre, value_method: :id %>
+          </div>
+          </div>
+          <div class="col-xs-12 col-md-6">
+            <div class="form-group">
+              <label>Modelo</label>
+              <%= f.input :modeloCustom %>
+            </div>
+          </div>
+          <div class="col-xs-12 col-md-3">
+            <div class="form-group">
+            <label>Año</label>
+            <%= f.input :anio, collection: 1900..2014 %>
+            </div>
+          </div>
+          <div class="col-xs-12">
+            <label>Vista previa: Título de la publicación</label>
+            <input type="text" id="titulo_prev" class="form-control", placeholder='Ej: [marca] Peugeot [modelo] 207 Compact 5P [año] 2014' disabled >
+            <%= f.input :titulo, as: :hidden %>
+          </div>
+        </fieldset>
+        </div>
+        
+        <!-- CARCATERISTICAS PRINCIPALES -->
+        <div class="row">
+          <fieldset class="">
+            <legend class="">Características Principales</legend>
+          <div class="col-xs-12 col-sm-6 col-md-6">
+            <div class="form-group">
+              <label>Precio</label>
+              <%= f.input :precio, input_html: { value: '0' } %>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-6 col-md-6">
+            <div class="form-group">
+              <label>Combustible</label>
+              <%= f.input :combustible, as: :select, collection: ['Nafta', 'Nafta-GNC', 'Diesel', 'Diesel-GNC', 'GNC', 'Otro'] %>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-6 col-md-6">
+            <div class="form-group">
+              <label>Kilometraje</label>
+              <%= f.input :kilometraje, input_html: { value: '0' } %>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-6 col-md-6">
+            <div class="form-group">
+              <label>Condición</label>
+              <%= f.input :condicion, as: :select, collection: ['Nuevo', 'Usado'] %>
+            </div>
+          </div>
+          </fieldset>
+        </div>
+      </div>
+
+      <div id="paso2">
+  
+        <%= render 'caracteristicas'  %>
+
+        <div class="form-group">
+          <%= f.input :equipamiento, as: :hidden %>
+        </div>
+        <div class="form-group">
+          <%= f.input :seguridad, as: :hidden %>
+        </div>
+        <div class="form-group">
+          <%= f.input :exterior, as: :hidden %>
+        </div>
+        <div class="form-group">
+          <label>Comentario</label>
+          <%= f.input :comentario, placeholder: 'Escribe un comentario si lo necesitas' %>
+        </div>
+
+      </div>
+
+      <div id="paso3">
+        <!-- FOTO PPAL -->
+        <fieldset class="">
+            <legend class="">Foto principal</legend>
+            <div class="form-group">
+              <%= f.input :foto_ppal, class: 'filestyle', id: 'foto_ppal' %>
+            </div>
+        </fieldset>
+        <!-- FOTOS / FORM ANIDADO -->
+        <fieldset class="">
+            <legend class="">Fotos secundarias</legend>
+            <div class="row">
+                <%= f.simple_fields_for :fotos do |foto| %>
+                  <%= render 'foto_fields', :f => foto %>
+                <% end %>
+            </div>
+            <div class="row">
+                 <div class="col-xs-12">
+                   <%= link_to_add_association 'Agregar foto', f, :fotos,  class: 'btn btn-primary', id: 'agregar' %>
+                   <%= link_to_remove_association "Eliminar foto", f, class: 'btn btn-primary', id: 'borrar' %>
+                 </div>      
+            </div>
+        </fieldset>
+      </div>
+      <!-- INPUT ALTA / MANEJO DEL SUBMIT -->
+      <div class="form-group">
+          <%= f.input :alta, required: true, as: :hidden %>
+      </div>
+      <!-- BOTONES -->
+      <hr>
+      <div class="form-group">
+          <button type='submit' id='continuar_paso1' class='btn btn-primary'>Continuar&nbsp;&nbsp;<span class="glyphicon glyphicon-arrow-right"></span></button>
+          <a id='volver_paso1' class='btn btn-default'>Paso 1</a>
+          <button type='submit' id='continuar_paso2' class='btn btn-primary'>Continuar&nbsp;&nbsp;<span class="glyphicon glyphicon-arrow-right"></span></button>
+          <a id='volver_paso2' class='btn btn-default'>Paso 2</a>
+          <%= f.button :submit, "Publicar", class: 'btn btn-success', id: 'publicar' %>
+      </div> 
+    </div>
+    <% end %>
+  </div>
+</div>
+
+<%= javascript_include_tag 'vehiculos', 'data-turbolinks-track' => true %>
+<%= javascript_include_tag 'bootstrap-filestyle.min', 'data-turbolinks-track' => true %>

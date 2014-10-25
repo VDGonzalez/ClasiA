@@ -1,0 +1,65 @@
+<h1>Listing vehiculos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Usuario</th>
+      <th>Agencia</th>
+      <th>Segmento</th>
+      <th>Dpto mendoza</th>
+      <th>Marca</th>
+      <th>Modelo</th>
+      <th>Modelocustom</th>
+      <th>Titulo</th>
+      <th>Anio</th>
+      <th>Kilometraje</th>
+      <th>Combustible</th>
+      <th>Precio</th>
+      <th>Condicion</th>
+      <th>Comentario</th>
+      <th>Destacado</th>
+      <th>Principal</th>
+      <th>Denunciado</th>
+      <th>Alta</th>
+      <th>Equipamiento</th>
+      <th>Seguridad</th>
+      <th>Exterior</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @vehiculos.each do |vehiculo| %>
+      <tr>
+        <td><%= vehiculo.usuario %></td>
+        <td><%= vehiculo.agencia %></td>
+        <td><%= vehiculo.segmento %></td>
+        <td><%= vehiculo.dpto_mendoza %></td>
+        <td><%= vehiculo.marca %></td>
+        <td><%= vehiculo.modelo %></td>
+        <td><%= vehiculo.modeloCustom %></td>
+        <td><%= vehiculo.titulo %></td>
+        <td><%= vehiculo.anio %></td>
+        <td><%= vehiculo.kilometraje %></td>
+        <td><%= vehiculo.combustible %></td>
+        <td><%= vehiculo.precio %></td>
+        <td><%= vehiculo.condicion %></td>
+        <td><%= vehiculo.comentario %></td>
+        <td><%= vehiculo.destacado %></td>
+        <td><%= vehiculo.principal %></td>
+        <td><%= vehiculo.denunciado %></td>
+        <td><%= vehiculo.alta %></td>
+        <td><%= vehiculo.equipamiento %></td>
+        <td><%= vehiculo.seguridad %></td>
+        <td><%= vehiculo.exterior %></td>
+        <td><%= link_to 'Show', vehiculo %></td>
+        <td><%= link_to 'Edit', edit_vehiculo_path(vehiculo) %></td>
+        <td><%= link_to 'Destroy', vehiculo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Vehiculo', new_vehiculo_path %>

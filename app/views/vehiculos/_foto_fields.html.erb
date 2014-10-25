@@ -1,0 +1,18 @@
+<div class="nested-fields">
+	<div class="col-xs-12 col-sm-6 col-md-6">
+		<div class="form-group">
+			<label for="dscripciom">Descripción</label>
+			<%= f.input :descripciom, placeholder: 'Ej: lateral, frente, interior...' %>
+		</div>
+	</div>
+	<div class="col-xs-12 col-sm-6 col-md-6">
+		<div class="form-group">
+			<label for="imagen">Foto</label>
+			<%= f.input :imagen, class: 'filestyle' %>	
+		</div>
+	</div>	
+</div>
+
+<script>
+	$(":file").filestyle({buttonName: "btn-primary", buttonText: "Seleccionar", icon: false }); 
+</script>

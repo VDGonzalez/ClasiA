@@ -3,6 +3,7 @@
 class Usuario < ActiveRecord::Base
 
   belongs_to :dpto_mendoza
+  has_many :vehiculos, dependent: :destroy
 
   # Configuración de gema devise: -----------------------------------------------------------------
 
