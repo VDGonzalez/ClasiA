@@ -1,24 +1,30 @@
-(function($) {  
-    $.get = function(key)   {  
-        key = key.replace(/[\[]/, '\\[');  
-        key = key.replace(/[\]]/, '\\]');  
-        var pattern = "[\\?&]" + key + "=([^&#]*)";  
-        var regex = new RegExp(pattern);  
-        var url = unescape(window.location.href);  
-        var results = regex.exec(url);  
-        if (results === null) {  
-            return null;  
-        } else {  
-            return results[1];  
-        }  
-    }  
-})(jQuery);  
+(function($) {
+    $.get = function(key) {
+        key = key.replace(/[\[]/, '\\[');
+        key = key.replace(/[\]]/, '\\]');
+        var pattern = "[\\?&]" + key + "=([^&#]*)";
+        var regex = new RegExp(pattern);
+        var url = unescape(window.location.href);
+        var results = regex.exec(url);
+        if (results === null) {
+            return null;
+        } else {
+            return results[1];
+        }
+    }
+})(jQuery);
 
 $(document).ready(function(){
 	// Estilo input file con bootsjs
     $(":file").filestyle({buttonName: "btn-primary", buttonText: "Seleccionar", icon: false });
+
+    // Setear segmento
+		if ( $('#vehiculo_segmento_id').val() == "" ) {
+			var segmento = $.get("segmento");
+			$('#vehiculo_segmento_id').val(segmento);
+		}
 	// Inicializar titulo_prev
-		var marca = $('#vehiculo_marca_id :selected').html(); 
+		var marca = $('#vehiculo_marca_id :selected').html();
 		var modeloc = $('#vehiculo_modeloCustom').val();
 		var anio = $('#vehiculo_anio').val();
 		var titulo = marca + ' ' + ' ' + modeloc + ' ' + anio;
@@ -84,9 +90,6 @@ $(document).ready(function(){
 
 		// Continuar al paso 3
 		$('#continuar_paso2').click(function (){
-			$('#vehiculo_equipamiento').val(array_equipamiento);
-			$('#vehiculo_seguridad').val(array_seguridad);
-			$('#vehiculo_exterior').val(array_exterior);
 			$('#paso2').hide();
 			$('#paso3').fadeIn();
 			$('#continuar_paso2').hide();
@@ -108,21 +111,21 @@ $(document).ready(function(){
 
 	//Manejo input titulo
 		$('#vehiculo_marca_id').change(function (){
-			var marca = $('#vehiculo_marca_id :selected').html(); 
+			var marca = $('#vehiculo_marca_id :selected').html();
 			var modeloc = $('#vehiculo_modeloCustom').val();
 			var anio = $('#vehiculo_anio').val();
 			var titulo = marca + ' ' + ' ' + modeloc + ' ' + anio;
 			$('#titulo_prev').val(titulo);
 		});
 		$('#vehiculo_modeloCustom').change(function (){
-			var marca = $('#vehiculo_marca_id :selected').html(); 
+			var marca = $('#vehiculo_marca_id :selected').html();
 			var modeloc = $('#vehiculo_modeloCustom').val();
 			var anio = $('#vehiculo_anio').val();
 			var titulo = marca + ' ' + ' ' + modeloc + ' ' + anio;
 			$('#titulo_prev').val(titulo);
 		});
 		$('#vehiculo_anio').change(function (){
-			var marca = $('#vehiculo_marca_id :selected').html(); 
+			var marca = $('#vehiculo_marca_id :selected').html();
 			var modeloc = $('#vehiculo_modeloCustom').val();
 			var anio = $('#vehiculo_anio').val();
 			var titulo = marca + ' ' + ' ' + modeloc + ' ' + anio;
@@ -134,9 +137,6 @@ $(document).ready(function(){
 		var equipamiento = $('#vehiculo_equipamiento').val();
 		if (equipamiento) {
 			array_equipamiento = equipamiento.split(',');
-		}else{
-			var segmento = $.get("segmento");
-			$('#vehiculo_segmento_id').val(segmento); // Setea valor de segmento, solo se ejecuta al crear
 		}
 
 	// Inicilizar Array de Seguridad
@@ -161,9 +161,10 @@ $(document).ready(function(){
 				array_equipamiento.push(input_val);
 			}else{
 				array_equipamiento = jQuery.grep(array_equipamiento, function(value) {
-				  return value != input_val;
+					return value != input_val;
 				});
 			}
+			$('#vehiculo_equipamiento').val(array_equipamiento);
 		});
 
 	// Eventos Seguridad
@@ -174,9 +175,10 @@ $(document).ready(function(){
 				array_seguridad.push(input_val);
 			}else{
 				array_seguridad = jQuery.grep(array_seguridad, function(value) {
-				  return value != input_val;
+					return value != input_val;
 				});
 			}
+			$('#vehiculo_seguridad').val(array_seguridad);
 		});
 
 	// Eventos Exterior
@@ -187,10 +189,10 @@ $(document).ready(function(){
 				array_exterior.push(input_val);
 			}else{
 				array_exterior = jQuery.grep(array_exterior, function(value) {
-				  return value != input_val;
+					return value != input_val;
 				});
 			}
-			$('#vehiculo_equipamiento').val(array_equipamiento);
+			$('#vehiculo_exterior').val(array_exterior);
 		});
 
 	// Fotos Anidadas

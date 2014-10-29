@@ -42,7 +42,7 @@ ActiveAdmin.register Vehiculo do
         f.input :titulo
         f.input :precio
         f.input :kilometraje
-        f.input :combustible, :as => :select, :collection => ['Nafta', 'Nafta-GNC', 'Diesel', 'Diesel-GNC', 'GNC', 'Otro']
+        f.input :combustible, :as => :select, :collection => ['Nafta', 'Nafta | GNC', 'Diesel', 'Diesel | GNC', 'GNC', 'Otro']
         f.input :condicion, :as => :select, :collection => ['Nuevo', 'Usado']
       end
       f.inputs "Caracteristicas" do
