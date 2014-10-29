@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   resources :vehiculos
-  get 'vehiculos/select_new' => 'vehiculos#select_new'
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)

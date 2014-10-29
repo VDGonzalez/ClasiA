@@ -1,10 +1,61 @@
 class VehiculosController < ApplicationController
   before_action :set_vehiculo, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_empty_vehiculo, only: [:index]
   # GET /vehiculos
   # GET /vehiculos.json
   def index
-    @vehiculos = Vehiculo.all
+    
+
+    if params[:vehiculo]
+      @vehiculo = Vehiculo.new(vehiculo_params)
+
+      # obtener el paramtero segmento y filtrar la busqueda
+      @segmento = params[:vehiculo]['segmento_id']
+      if @segmento.blank?
+        @vehiculos = Vehiculo.all
+      else
+        @vehiculos = Vehiculo.where(segmento_id: @segmento)
+      end
+
+      # paginar todos los vehiculos
+      @vehiculos = @vehiculos.paginate(:page => params[:page], :per_page => 4)
+
+      # PRECIO
+      # obtener el valor maximo
+      @max = @vehiculos.order(precio: :desc).first
+      unless @max.blank?
+        params[:precioMax_query] = @max.precio
+      end
+      # Filtrado por precio
+      @precioMin = params[:precioMin]
+      @precioMax = params[:precioMax]
+      unless @precioMin.blank? and @precioMax.blank?
+        @vehiculos = @vehiculos.where(precio: (@precioMin.to_f)..(@precioMax.to_f))
+      end
+
+      #COMBUSTIBLE
+      @combustible = params[:vehiculo][:combustible]
+      unless @combustible.blank?
+        @arrayCombustible = @combustible.split(",")
+        @aux = []
+        @arrayCombustible.each do |e| 
+          if e == "GNC"
+            @aux = @aux + @vehiculos.where('combustible LIKE ?', "%#{e}%")
+          else
+            @aux = @aux + @vehiculos.where(combustible: e)
+          end
+        end
+        @vehiculos = @aux
+      end
+    else
+      @vehiculos = Vehiculo.all
+      @vehiculos = @vehiculos.paginate(:page => params[:page], :per_page => 4)
+      # obtener el valor maximo
+      @max = @vehiculos.order(precio: :desc).first
+      unless @max.blank?
+        params[:precioMax_query] = @max.precio
+      end
+    end
   end
 
   # GET /vehiculos/1
@@ -66,6 +117,10 @@ class VehiculosController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    def set_empty_vehiculo
+      @vehiculo = Vehiculo.new
+    end
+
     def set_vehiculo
       @vehiculo = Vehiculo.find(params[:id])
       segmento = @vehiculo.segmento_id

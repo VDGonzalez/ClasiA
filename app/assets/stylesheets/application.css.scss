@@ -23,6 +23,8 @@
 @import "thumbnail";
 @import "form";
 @import "jquery.bxslider";
+@import "slider";
+@import "filtros";
 
 /////////////////////////////////////////////////////////////////////
 /////////////GENERALES
@@ -33,4 +35,10 @@
 
 .bg-white {
 background-color: $blanco;
+}
+
+.margin-container {
+	margin-top: 30px;
+	margin-bottom: 30px;
+	padding-bottom: 30px;
 }
