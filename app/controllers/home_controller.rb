@@ -5,9 +5,7 @@ class HomeController < ApplicationController
 			marker.lat agencia.latitud
 			marker.lng agencia.longitud
 			marker.title agencia.nombre
-			# HACER: Ver si sacar el tag <hr> para compactar un poco el contenido
-			marker.infowindow "<big><strong>#{agencia.nombre}</strong></big>
-							   <hr>
+			marker.infowindow "<p><big><strong>#{agencia.nombre}</strong></big></p>
 							   <span>
 							     <p>#{agencia.direccion}</p>
 								 <p><a href='mailto:#{agencia.email}'>#{agencia.email}</a></p>

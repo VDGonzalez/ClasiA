@@ -58,6 +58,10 @@ ActiveRecord::Schema.define(version: 20141022025038) do
     t.boolean  "alta"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "logo_file_name"
+    t.string   "logo_content_type"
+    t.integer  "logo_file_size"
+    t.datetime "logo_updated_at"
   end
 
   add_index "agencia", ["dpto_mendoza_id"], name: "index_agencia_on_dpto_mendoza_id"
@@ -77,6 +81,34 @@ ActiveRecord::Schema.define(version: 20141022025038) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "fotos", force: true do |t|
+    t.integer  "vehiculo_id"
+    t.string   "descripciom"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "imagen_file_name"
+    t.string   "imagen_content_type"
+    t.integer  "imagen_file_size"
+    t.datetime "imagen_updated_at"
+  end
+
+  add_index "fotos", ["vehiculo_id"], name: "index_fotos_on_vehiculo_id"
+
+  create_table "marcas", force: true do |t|
+    t.string   "nombre"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "modelos", force: true do |t|
+    t.integer  "marca_id"
+    t.string   "nombre"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "modelos", ["marca_id"], name: "index_modelos_on_marca_id"
 
   create_table "segmentos", force: true do |t|
     t.string   "nombre"
@@ -108,5 +140,42 @@ ActiveRecord::Schema.define(version: 20141022025038) do
   add_index "usuarios", ["dpto_mendoza_id"], name: "index_usuarios_on_dpto_mendoza_id"
   add_index "usuarios", ["email"], name: "index_usuarios_on_email", unique: true
   add_index "usuarios", ["reset_password_token"], name: "index_usuarios_on_reset_password_token", unique: true
+
+  create_table "vehiculos", force: true do |t|
+    t.integer  "usuario_id"
+    t.integer  "agencia_id"
+    t.integer  "segmento_id"
+    t.integer  "dpto_mendoza_id"
+    t.integer  "marca_id"
+    t.integer  "modelo_id"
+    t.string   "modeloCustom"
+    t.string   "titulo"
+    t.integer  "anio"
+    t.integer  "kilometraje"
+    t.string   "combustible"
+    t.float    "precio"
+    t.string   "condicion"
+    t.text     "comentario"
+    t.boolean  "destacado"
+    t.boolean  "principal"
+    t.integer  "denunciado"
+    t.boolean  "alta"
+    t.text     "equipamiento"
+    t.text     "seguridad"
+    t.text     "exterior"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "foto_ppal_file_name"
+    t.string   "foto_ppal_content_type"
+    t.integer  "foto_ppal_file_size"
+    t.datetime "foto_ppal_updated_at"
+  end
+
+  add_index "vehiculos", ["agencia_id"], name: "index_vehiculos_on_agencia_id"
+  add_index "vehiculos", ["dpto_mendoza_id"], name: "index_vehiculos_on_dpto_mendoza_id"
+  add_index "vehiculos", ["marca_id"], name: "index_vehiculos_on_marca_id"
+  add_index "vehiculos", ["modelo_id"], name: "index_vehiculos_on_modelo_id"
+  add_index "vehiculos", ["segmento_id"], name: "index_vehiculos_on_segmento_id"
+  add_index "vehiculos", ["usuario_id"], name: "index_vehiculos_on_usuario_id"
 
 end
