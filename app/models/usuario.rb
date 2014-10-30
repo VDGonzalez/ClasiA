@@ -45,12 +45,15 @@ class Usuario < ActiveRecord::Base
   # TELEFONO 2
   validates_format_of :telefono2,:with => TELEFONO_REGEX, allow_blank: true, :message=>"Debe estar formado por la característica seguida del número (sin espacios)"
   
+  # Métodos protected para validación
   protected
 
+    # CONTRASEÑA
     def password_required?
       !persisted? || !password.nil? || !password_confirmation.nil?
     end
 
+    # E-MAIL
     def email_required?
       true
     end
