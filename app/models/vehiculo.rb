@@ -9,6 +9,7 @@ class Vehiculo < ActiveRecord::Base
   accepts_nested_attributes_for :fotos, :reject_if => :all_blank, :allow_destroy => true
 
   validates_presence_of   :dpto_mendoza_id
+  validates_presence_of   :titulo
 
   has_attached_file :foto_ppal, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/missing.jpg"
   validates_attachment_content_type :foto_ppal, :content_type => /\Aimage\/.*\Z/

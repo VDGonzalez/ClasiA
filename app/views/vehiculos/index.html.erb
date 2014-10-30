@@ -1,65 +1,134 @@
-<h1>Listing vehiculos</h1>
+<div class="container margin-container">
+  <div class="row">
+    <div class="col-xs-12 col-md-3 filters-container">
+      <div class="row">
+        <%= simple_form_for @vehiculo, method: 'get', defaults: { input_html: { class: 'form-control' }, label: false } do |f| %>
+        <!-- Header Reset -->
+        <div class="col-xs-4 col-md-12">
+          <div class="row filter" >
+            <div class="col-xs-12 header-ppal">
+              <h3><span class="glyphicon glyphicon-ok-sign"></span>Filtros Aplicados</h3>
+            </div>
+            <div class="col-xs-offset-1 col-xs-10">
+              <p class="alert alert-info" role="alert">Algun filtro</p>
+              <p class="alert alert-info" role="alert">Otro filtro</p>
+              <a class="btn btn-primary center-block" id="eliminar_todos"><span class="glyphicon glyphicon-trash"></span>&nbsp;Eliminar Todos</a>
+            </div>
+          </div>
+        </div>
+        <!-- SEGMENTOS -->
+        <div class="col-xs-4 col-md-12">
+          <div class="row filter">
+            <div class="col-xs-12 filter-header">
+              <h3><span class="glyphicon glyphicon-filter"></span>Tipo de vehículo</h3>
+            </div>
+            <div class="col-xs-12">
+              <%= f.association :segmento, as: :select, label_method: :nombre, value_method: :id, prompt: 'Todos'%>
+            </div>
+          </div>
+        </div>
+        <!-- MARCAS -->
+        <div class="col-xs-4 col-md-12">
+          <div class="row filter">
+            <div class="col-xs-12 filter-header">
+              <h3><span class="glyphicon glyphicon-filter"></span>Marca</h3>
+            </div>
+            <div class="col-xs-12">
+              <%= f.association :marca, as: :select, label_method: :nombre, value_method: :id, prompt: 'Todas' %>
+            </div>
+          </div>
+        </div>
+        <!-- PECIO / KM / AÑO -->
+        <div class="col-xs-4 col-md-12">
+          <div class="row filter">
+            <div class="col-xs-12 filter-header">
+              <h3><span class="glyphicon glyphicon-filter"></span>Precio</h3>
+            </div>
+            <div class="col-xs-12">
+              <input type="text" class="span2 form-control">
+              <!-- Input para setear valor maximo de precio -->
+              <%= text_field_tag :precioMax_query, params[:precioMax_query], id: 'precioMax_query', class: 'form-control hidden'%>
+            </div>
+            <div class="col-xs-6">
+              <div class="form-group">
+                <label for="">Min</label>
+                <%= text_field_tag :precioMin, params[:precioMin], id: 'precioMin', class: 'form-control', placeholder: 'Minimo' %>
+              </div>
+            </div>
+            <div class="col-xs-6">
+              <div class="form-group">
+                <label for="">Max</label>
+                <%= text_field_tag :precioMax, params[:precioMax], id: 'precioMax', class: 'form-control', placeholder: 'Maximo' %>
+              </div>
+            </div>
+          </div>
+          <div class="row filter">
+            <div class="col-xs-12 filter-header">
+              <h3><span class="glyphicon glyphicon-filter"></span>Condición</h3>
+            </div>
+            <div class="col-xs-12">
+              <%= f.input :condicion, as: :select, collection: ['Nuevo | Okm', 'Usado'], prompt: 'Todas' %>
+            </div>
+          </div>
+        </div>
+        <!-- COMBUSTIBKE -->
+        <div class="col-xs-4 col-md-12">
+          <div class="row filter">
+            <div class="col-xs-12 filter-header">
+              <h3><span class="glyphicon glyphicon-filter"></span>Combustible</h3>
+            </div>
+            <div class="col-xs-12">
+              <div class="checkbox">
+                <label>
+                <input type='checkbox' value='Nafta' class="array_combustible">Nafta
+                </label><br>
+                <label>
+                <input type='checkbox' value='Diesel' class="array_combustible">Diesel
+                </label><br>
+                <label>
+                <input type='checkbox' value='GNC' class="array_combustible">GNC
+                </label><br>
+                <label>
+                <input type='checkbox' value='Otro' class="array_combustible">Otro
+                </label>
+              </div>
+              <%= f.input :combustible  %>
+            </div>
+          </div>
+        </div>
+        <!-- UBICACION -->
+        <div class="col-xs-4 col-md-12">
+          <div class="row filter">
+            <div class="col-xs-12 filter-header">
+              <h3><span class="glyphicon glyphicon-filter"></span>Ubicación</h3>
+            </div>
+            <div class="col-xs-12">
+              <%= f.association :dpto_mendoza, as: :select, label_method: :nombre, value_method: :id, prompt: 'Todas' %>
+            </div>
+          </div>
+          <%= f.submit 'Enviar' %>
+        </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-xs-12 col-md-9">
+      <table class="table">
+      <% @vehiculos.each do |a| %>
+        <tr>
+          <td><%= a.titulo %></td>
+          <td><%= a.dpto_mendoza.nombre %></td>
+          <td><%= a.segmento.nombre %></td>
+          <td><%= a.marca.nombre %></td>
+          <td><%= a.condicion %></td>
+          <td><%= a.precio %></td>
+          <td><%= a.combustible %></td>
+        </tr>
+      <% end %>
+      </table>
+    </div>
+  </div>
+</div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Usuario</th>
-      <th>Agencia</th>
-      <th>Segmento</th>
-      <th>Dpto mendoza</th>
-      <th>Marca</th>
-      <th>Modelo</th>
-      <th>Modelocustom</th>
-      <th>Titulo</th>
-      <th>Anio</th>
-      <th>Kilometraje</th>
-      <th>Combustible</th>
-      <th>Precio</th>
-      <th>Condicion</th>
-      <th>Comentario</th>
-      <th>Destacado</th>
-      <th>Principal</th>
-      <th>Denunciado</th>
-      <th>Alta</th>
-      <th>Equipamiento</th>
-      <th>Seguridad</th>
-      <th>Exterior</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @vehiculos.each do |vehiculo| %>
-      <tr>
-        <td><%= vehiculo.usuario %></td>
-        <td><%= vehiculo.agencia %></td>
-        <td><%= vehiculo.segmento %></td>
-        <td><%= vehiculo.dpto_mendoza %></td>
-        <td><%= vehiculo.marca %></td>
-        <td><%= vehiculo.modelo %></td>
-        <td><%= vehiculo.modeloCustom %></td>
-        <td><%= vehiculo.titulo %></td>
-        <td><%= vehiculo.anio %></td>
-        <td><%= vehiculo.kilometraje %></td>
-        <td><%= vehiculo.combustible %></td>
-        <td><%= vehiculo.precio %></td>
-        <td><%= vehiculo.condicion %></td>
-        <td><%= vehiculo.comentario %></td>
-        <td><%= vehiculo.destacado %></td>
-        <td><%= vehiculo.principal %></td>
-        <td><%= vehiculo.denunciado %></td>
-        <td><%= vehiculo.alta %></td>
-        <td><%= vehiculo.equipamiento %></td>
-        <td><%= vehiculo.seguridad %></td>
-        <td><%= vehiculo.exterior %></td>
-        <td><%= link_to 'Show', vehiculo %></td>
-        <td><%= link_to 'Edit', edit_vehiculo_path(vehiculo) %></td>
-        <td><%= link_to 'Destroy', vehiculo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Vehiculo', new_vehiculo_path %>
+<%= javascript_include_tag 'filtro', 'data-turbolinks-track' => true %>
+<%= javascript_include_tag 'bootstrap-slider', 'data-turbolinks-track' => true %>

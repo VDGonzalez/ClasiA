@@ -1,0 +1,56 @@
+@import "colors";
+
+.filters-container {
+	background-color: $grisUp;
+	color: $grisOscuro;
+	padding: 25px; // 15px por defecto + 10px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+.filter {
+	background-color: $gris;
+	margin-bottom: 10px;
+	div:first-child {
+		padding-top: 0;
+		padding-bottom: 0;
+	}
+	div {
+		padding-top: 10px;
+		padding-bottom: 10px;
+	}
+}
+.header-ppal {
+	background-color: $azul;
+	color: $grisUp;
+	h3 {
+		margin-top: 10px;
+		font-size: 16px;
+	}
+	.glyphicon {
+		margin-right: 10px;
+	}
+}
+.filter-header {
+	background-color: $grisOscuro;
+	color: $grisUp;
+	h3 {
+		margin-top: 10px;
+		font-size: 16px;
+	}
+	.glyphicon {
+		margin-right: 10px;
+	}
+}
+.slider {
+	//width: 100%;
+	display: block;
+	margin: 0 auto;
+	.slider-handle {
+		background-color: $naranja;
+		background-image: none;
+	}
+}
+.alert{
+	padding: 5px;
+	margin-bottom: 5px;
+}

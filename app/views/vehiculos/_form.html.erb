@@ -89,7 +89,7 @@
           <div class="col-xs-12 col-sm-6 col-md-6">
             <div class="form-group">
               <label>Combustible</label>
-              <%= f.input :combustible, as: :select, collection: ['Nafta', 'Nafta-GNC', 'Diesel', 'Diesel-GNC', 'GNC', 'Otro'] %>
+              <%= f.input :combustible, as: :select, collection: ['Nafta', 'Nafta | GNC', 'Diesel', 'Diesel | GNC', 'GNC', 'Otro'] %>
             </div>
           </div>
           <div class="col-xs-12 col-sm-6 col-md-6">
@@ -101,7 +101,7 @@
           <div class="col-xs-12 col-sm-6 col-md-6">
             <div class="form-group">
               <label>Condición</label>
-              <%= f.input :condicion, as: :select, collection: ['Nuevo', 'Usado'] %>
+              <%= f.input :condicion, as: :select, collection: ['Nuevo | Okm', 'Usado'] %>
             </div>
           </div>
           </fieldset>
